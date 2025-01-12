@@ -1,0 +1,209 @@
+.talent-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  /* Más espacio entre las filas */
+  padding: 40px;
+  background-color: #1e1e2f;
+  /* Fondo oscuro */
+  border-radius: 15px;
+  /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 2px solid #3e3e5e;
+  /* Marco alrededor del diagrama */
+  width: 80%;
+  /* Ocupa el 80% del ancho disponible */
+  margin: 0 auto;
+  /* Centrado en la pantalla */
+  border: 2px solid #ffffff;
+  /* Marco blanco */
+  max-width: 900px;
+  /* Evita que sea demasiado grande */
+  font-size: 1rem;
+  /* Tamaño de fuente base */
+}
+
+.habilidad-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .talent-node {
+    padding: 10px;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    color: white;
+    transition: all 0.3s ease;
+
+    &.ellipse {
+      border-radius: 50%;
+    }
+
+    &.rectangle {
+      border-radius: 5px;
+    }
+
+    .option-node {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 2px dashed #ffc107;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #353535;
+      color: white;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+
+      &.active {
+        border-color: #28a745;
+        box-shadow: 0 0 12px rgba(40, 167, 69, 0.9);
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        border-color: #28a745;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.opciones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+
+.talent-tree svg {
+  width: 100%;
+  height: auto;
+}
+
+.talent-row {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  /* Más espacio entre nodos dentro de una fila */
+}
+
+.talent-node {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  /* Usa `rem` en lugar de `px` */
+  font-size: 0.9rem;
+  background: linear-gradient(145deg, #23233e, #1a1a2b);
+  /* Fondo degradado */
+  color: #fff;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.1rem;
+  /* Texto ligeramente más grande */
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: linear-gradient(145deg, #2a2a4a, #1f1f36);
+    /* Cambiar colores al hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateY(-15px);
+    /* Efecto de elevación */
+  }
+
+  &.active {
+    background: linear-gradient(145deg, #28a745, #218838);
+    /* Colores para habilidades activas */
+    border: 2px solid #1c7b2a;
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.6);
+  }
+
+  &.ellipse {
+    border-radius: 50%;
+    /* Hace que la habilidad sea una elipse */
+    padding: 1rem 2rem;
+    /* Ajusta el tamaño del elipse */
+  }
+
+  &.rectangle {
+    border-radius: 8px;
+    /* Mantiene una forma rectangular */
+    padding: 1rem 1.5rem;
+    /* Ajusta el tamaño del rectángulo */
+  }
+}
+
+.tooltip {
+  position: fixed;
+  background-color: #1a1a2e;
+  color: #ffffff;
+  border: 1px solid #3e3e5e;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: opacity 0.3s ease-in-out;
+  min-width: 250px;
+  max-width: 350px;
+
+  &.visible {
+    visibility: visible;
+    /* Hacer visible */
+    opacity: 1;
+    /* Mostrar con opacidad */
+  }
+}
+
+.arrow {
+  stroke-width: 3px;
+  /* Grosor de la flecha */
+  stroke-linecap: round;
+  /* Bordes redondeados */
+  stroke-linejoin: round;
+  marker-end: url(#arrowhead);
+  /* Marcador personalizado para flechas */
+}
+
+.arrow path {
+  stroke: #ffc107;
+  /* Amarillo por defecto */
+  transition: stroke 0.3s ease-in-out;
+  /* Animación suave al cambiar de color */
+}
+
+.arrow.active path {
+  stroke: #28a745;
+  /* Verde si está activo */
+}
+
+.arrow-inactive path {
+  stroke: #ff4500;
+  /* Rojo si está bloqueado */
+}
+
+.talent-tree-title {
+  font-size: 2rem;
+  /* Título más grande */
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}

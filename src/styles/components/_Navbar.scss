@@ -1,0 +1,37 @@
+.navBar {
+    background: #ff8d01; /* Cambiado a un color hexadecimal válido */
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Espaciado horizontal */
+  
+    .nav_logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+    }
+  
+    .nav_items a {
+      margin: 0 15px;
+      color: white;
+      position: relative;
+      text-decoration: none;
+    }
+  
+    .search-bar {
+      width: 300px; /* Tamaño fijo */
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid #5e239d;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+  
+      &:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+      }
+    }
+  }
+  

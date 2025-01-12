@@ -1,0 +1,29 @@
+.clase-item {
+  display: flex; /* Centra el contenido */
+  flex-direction: column;
+  align-items: center; /* Alinea la imagen al centro */
+  text-align: center; /* Para el texto debajo de la imagen */
+
+  .clase-img {
+    width: 120px;
+    height: auto;
+    max-width: 100%; /* Limita el tamaño máximo */
+    margin: 0 auto 10px; /* Espaciado inferior */
+    border: 3px solid #8B0000;
+    border-radius: 8px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05); /* Hace un ligero zoom */
+      border-color: #FF4500; /* Cambia el color del borde */
+    }
+  }
+
+  .clase-name {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+    text-transform: capitalize; /* Asegura que el texto tenga capitalización */
+  }
+}
