@@ -1,0 +1,244 @@
+.clase-details {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  color: #2c3e50; /* Texto oscuro para mejor contraste */
+  line-height: 1.6;
+  background-color: #f9f9f9; /* Fondo neutro claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-and-diagram {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+    .clase-details-img,
+    .clase-diagrama-img {
+      max-width: 40%; /* Ambas ocuparán un 40% del contenedor */
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .habilidad-container {
+    display: flex;
+    flex-direction: row; /* Mantener texto e imagen en fila */
+    justify-content: space-between; /* Espacio entre texto e imagen */
+    align-items: flex-start; /* Alineación desde la parte superior */
+    margin: 20px 0;
+    gap: 20px; /* Espaciado entre elementos */
+  }
+
+  .habilidad-descripcion {
+    flex: 1; /* La descripción ocupa el espacio restante */
+    max-width: 60%; /* Limitar el ancho del texto */
+    text-align: left; /* Asegura que el texto de la descripción no esté centrado */
+    ul {
+      margin: 10px 0;
+      padding: 0 20px;
+      list-style: disc;
+
+      li {
+        margin-bottom: 10px;
+        color: #34495e; /* Azul oscuro */
+
+        strong {
+          color: #5e239d; /* Púrpura oscuro */
+        }
+      }
+    }
+  }
+  
+  .habilidad-img-container {
+    display: flex;
+    flex-direction: column; /* Cambia la dirección a vertical */
+    align-items: center; /* Centra los elementos */
+    text-align: center; /* Asegura que el texto esté centrado */
+    margin-top: 10px; 
+
+  .habilidad-img-nombre {
+      font-family: 'Baskerville', serif; /* Usa la tipografía especificada */
+      font-weight: bold;                /* Texto en negrita */
+      font-size: 1.0rem;                /* Tamaño de letra ajustado */
+      margin-top: 2px;                  /* Espacio entre la imagen y el texto */
+      color: #000;                      /* Color negro para el texto */
+  }
+}
+  .habilidad-img {
+    max-width: 40%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #34495e; /* Azul oscuro para títulos */
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: #5e239d; /* Púrpura oscuro */
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #5e239d;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    td {
+      background-color: #ffffff; /* Fondo blanco para celdas */
+      color: #2c3e50;
+    }
+  }
+
+  .subclase-img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .talent-button {
+    display: block;
+    margin: 20px auto; /* Centra el botón horizontalmente */
+    background-color: #ffa500; /* Naranja para destacar */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: #cc8400; /* Color al pasar el ratón */
+      transform: scale(1.05); /* Pequeño zoom */
+    }
+
+    &:active {
+      transform: scale(0.95); /* Efecto al hacer clic */
+    }
+  }
+
+  .habilidad-activa {
+    color: #228b22; /* Verde para habilidades activas */
+  }
+
+  .habilidad-pasiva {
+    color: #8b0000; /* Rojo para habilidades pasivas */
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+/* Estilo para el NavBar */
+.navbar {
+  background-color: #5e239d; /* Púrpura oscuro */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .navbar-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0 15px;
+
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
+
+/* Ajuste global */
+body {
+  overflow-x: hidden; /* Evita el scroll horizontal */
+  padding-bottom: 60px; /* Espacio adicional al final */
+  background-color: #ebebeb; /* Fondo general claro */
+}
+
+.button-link {
+  text-decoration: none; /* Elimina subrayado de enlace */
+  display: inline-block; /* Asegura que actúe como un bloque en línea */
+}
+
+.button-SEE-MORE {
+  background-color: #6c63ff; /* Cambia el color según tu esquema */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #5548c8; /* Color al pasar el ratón */
+    transform: scale(1.05); /* Pequeño zoom */
+  }
+
+  &:active {
+    transform: scale(0.95); /* Efecto al hacer clic */
+  }
+}

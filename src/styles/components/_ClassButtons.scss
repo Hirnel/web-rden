@@ -1,0 +1,27 @@
+button {
+  background-color: #01796F; /* Verde oscuro */
+  color: #F8F1E5; /* Crema claro */
+  border: none;
+  border-radius: 5px;
+  padding: 12px 18px; /* Ajustamos el padding */
+  font-size: 1.1rem; /* Texto ligeramente más grande */
+  font-weight: bold; /* Resalta el texto */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+
+  &:hover {
+    background-color: #015F50; /* Verde más oscuro */
+    transform: scale(1.05); /* Pequeño zoom */
+  }
+
+  &:active {
+    transform: scale(0.95); /* Efecto de clic */
+  }
+
+  &:disabled {
+    background-color: #9E9E9E; /* Gris para botones deshabilitados */
+    color: #FFFFFF; /* Texto blanco */
+    cursor: not-allowed; /* Cursor de no permitido */
+    opacity: 0.7; /* Transparencia para indicar desactivación */
+  }
+}
