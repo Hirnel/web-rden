@@ -22,6 +22,12 @@
   /* Evita que sea demasiado grande */
   font-size: 1rem;
   /* Tamaño de fuente base */
+
+   /* Nuevo ajuste para que el fondo se adapte al contenido */
+   width: min-content; /* Se adapta al contenido interno */
+   max-width: 100%; /* Evitar que crezca más del viewport */
+   overflow-x: auto; /* Habilitar desplazamiento horizontal si es necesario */
+   box-sizing: border-box;
 }
 
 .habilidad-container {
@@ -31,48 +37,69 @@
   gap: 10px;
 
   .talent-node {
-    padding: 10px;
-    border: 2px solid #ffc107;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    background: #000;
-    color: white;
-    transition: all 0.3s ease;
-
-    &.ellipse {
-      border-radius: 50%;
-    }
-
-    &.rectangle {
-      border-radius: 5px;
-    }
-
-    .option-node {
-      padding: 0.8rem;
-      border-radius: 8px;
-      border: 2px dashed #ffc107;
+      padding: 10px;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.3s ease;
-      background-color: #353535;
+      background: #000;
       color: white;
-      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+      transition: all 0.3s ease;
+      
+      /* Ajustes para que el texto no se desborde */
+      max-width: 100px;  /* Limitar el ancho del nodo */
+      height: auto;      /* Altura flexible para texto */
+      font-size: 1rem;   /* Tamaño de fuente base */
+      line-height: 1.2;  /* Reducir el espacio entre líneas */
+      word-wrap: break-word;  /* Romper palabras largas */
+      white-space: normal;    /* Permitir saltos de línea */
+      overflow: hidden;       /* Evitar desbordamientos */
+      box-sizing: border-box; /* Padding y border incluidos en el tamaño total */
 
-      &.active {
-        border-color: #28a745;
-        box-shadow: 0 0 12px rgba(40, 167, 69, 0.9);
+      &.ellipse {
+          border-radius: 50%;
+          padding: 15px; /* Ajuste específico para nodos circulares */
+          max-width: 90px;
+      }
+
+      &.rectangle {
+          border-radius: 5px;
+          max-width: 120px;
+      }
+
+      /* Ajustes para nodos con opción adicional */
+      .option-node {
+          padding: 0.8rem;
+          border-radius: 8px;
+          border: 2px dashed #ffc107;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-color: #353535;
+          color: white;
+          box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+
+          /* Ajuste de texto dentro de option-node */
+          font-size: 0.9rem;
+          line-height: 1.2;
+          word-wrap: break-word;
+          white-space: normal;
+          overflow: hidden;
+
+          &.active {
+              border-color: #28a745;
+              box-shadow: 0 0 12px rgba(40, 167, 69, 0.9);
+          }
+
+          &:hover {
+              transform: scale(1.1);
+              border-color: #28a745;
+          }
       }
 
       &:hover {
-        transform: scale(1.1);
-        border-color: #28a745;
+          transform: scale(1.1);
       }
-    }
-
-    &:hover {
-      transform: scale(1.1);
-    }
   }
 }
 
@@ -90,10 +117,10 @@
 }
 
 .talent-row {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  /* Más espacio entre nodos dentro de una fila */
+    display: flex;
+    flex-wrap: nowrap; /* Evitar que las filas se rompan */
+    justify-content: center;
+    gap: 20px;
 }
 
 .talent-node {
@@ -116,6 +143,7 @@
   /* Texto ligeramente más grande */
   font-weight: bold;
   transition: all 0.3s ease-in-out;
+  
 
   &:hover {
     background: linear-gradient(145deg, #2a2a4a, #1f1f36);
@@ -206,4 +234,88 @@
   color: #fff;
   margin-bottom: 20px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+
+/* Media Queries para _TalentTree.scss - Inspirado en el diseño de referencia */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  .talent-node {
+      max-width: 80px;
+      font-size: 0.9rem;
+  }
+
+  .option-node {
+      max-width: 90px;
+      font-size: 0.85rem;
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  .talent-node {
+      max-width: 100px;
+      font-size: 1rem;
+  }
+
+  .option-node {
+      max-width: 100px;
+      font-size: 0.95rem;
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .talent-tree {
+      width: 80%;
+      padding: 30px;
+      gap: 30px;
+  }
+
+  .habilidad-container {
+      gap: 20px;
+  }
+
+  .talent-node {
+      padding: 12px;
+      font-size: 1rem;
+      max-width: 80px;
+      height: 80px;
+  }
+
+  .talent-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .talent-tree {
+      width: 70%;
+      padding: 40px;
+      gap: 40px;
+  }
+
+  .habilidad-container {
+      gap: 25px;
+  }
+
+  .talent-node {
+      padding: 14px;
+      font-size: 1.2rem;
+      max-width: 90px;
+      height: 90px;
+  }
+
+  .talent-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+  }
 }

@@ -25,3 +25,54 @@ button {
     opacity: 0.7; /* Transparencia para indicar desactivación */
   }
 }
+
+/* Media Queries para _ClassButtons.scss */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  button {
+      padding: 10px 14px; /* Reducción del padding */
+      font-size: 1rem; /* Texto más pequeño */
+      border-radius: 4px; /* Ligeramente menor redondeo */
+
+      &:hover {
+          transform: scale(1.03); /* Menor efecto de zoom */
+      }
+
+      &:active {
+          transform: scale(0.97); /* Menor efecto al hacer clic */
+      }
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  button {
+      padding: 11px 16px; /* Ligero ajuste del padding */
+      font-size: 1.05rem;
+
+      &:hover {
+          transform: scale(1.04);
+      }
+
+      &:active {
+          transform: scale(0.98);
+      }
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  button {
+      padding: 12px 18px;
+      font-size: 1.1rem;
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  button {
+      padding: 14px 20px;
+      font-size: 1.2rem;
+  }
+}

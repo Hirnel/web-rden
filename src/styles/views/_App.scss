@@ -4,12 +4,15 @@
     padding: 0px;
     margin: 0px;
     font-family: "Pixelify Sans", sans-serif;
+    box-sizing: border-box; // Para evitar desbordamientos
 }
 
 body {
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 110%;
     background-color: $grey;
+    line-height: 1.6; // Mejor legibilidad en pantallas pequeñas
+    
 }
 
 a {
@@ -23,7 +26,7 @@ button {
     border-radius: 8px;
     color: $white;
     background-color:$primary-color;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, padding 0.3s ease;
     font-size: 16px;
 }
 
@@ -35,4 +38,35 @@ button:hover {
 input {
     padding: 10px;
     border-radius: 8px;
+}
+
+/* Media Queries para dispositivos más grandes */
+
+/* Tablets (mínimo 768px) */
+@media (min-width: 768px) {
+    body {
+        font-size: 120%;
+        
+    }
+
+    button {
+        font-size: 18px;
+    }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+    body {
+        font-size: 130%;
+        
+    }
+
+    button {
+        padding: 12px 24px;
+        font-size: 20px;
+    }
+
+    input {
+        max-width: 400px; // Limitar el ancho del input en pantallas grandes
+    }
 }

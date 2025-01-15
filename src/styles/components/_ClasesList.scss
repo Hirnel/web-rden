@@ -78,3 +78,138 @@
     }
   }
 }
+
+
+/* Media Queries para _ClasesList.scss */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  .clases-list {
+      padding: 10px;
+      
+      h2 {
+          font-size: 1.8rem;
+      }
+
+      .clases-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas más pequeñas */
+          gap: 15px;
+      }
+
+      .clase-card {
+          padding: 15px;
+
+          .clase-img {
+              height: 150px; /* Imagen más pequeña */
+          }
+
+          h3 {
+              font-size: 1.2rem;
+          }
+
+          .button-SEE-MORE {
+              font-size: 1rem;
+              padding: 10px;
+          }
+      }
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  .clases-list {
+      padding: 15px;
+
+      h2 {
+          font-size: 2rem;
+      }
+
+      .clases-grid {
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mejor ajuste de columnas */
+          gap: 20px;
+      }
+
+      .clase-card {
+          padding: 18px;
+
+          .clase-img {
+              height: 160px;
+          }
+
+          h3 {
+              font-size: 1.3rem;
+          }
+
+          .button-SEE-MORE {
+              font-size: 1.1rem;
+              padding: 12px;
+          }
+      }
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .clases-list {
+      padding: 20px;
+
+      h2 {
+          font-size: 2.2rem;
+      }
+
+      .clases-grid {
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+          gap: 25px;
+      }
+
+      .clase-card {
+          padding: 20px;
+
+          .clase-img {
+              height: 180px;
+          }
+
+          h3 {
+              font-size: 1.4rem;
+          }
+
+          .button-SEE-MORE {
+              font-size: 1.2rem;
+              padding: 14px;
+          }
+      }
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .clases-list {
+      padding: 30px;
+      
+      h2 {
+          font-size: 2.5rem;
+      }
+
+      .clases-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mayor tamaño de columna */
+          gap: 30px;
+      }
+
+      .clase-card {
+          padding: 25px;
+
+          .clase-img {
+              height: 200px;
+          }
+
+          h3 {
+              font-size: 1.5rem;
+          }
+
+          .button-SEE-MORE {
+              font-size: 1.3rem;
+              padding: 16px;
+          }
+      }
+  }
+}

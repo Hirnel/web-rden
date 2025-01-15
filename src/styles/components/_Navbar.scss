@@ -1,37 +1,84 @@
 .navBar {
-    background: #ff8d01; /* Cambiado a un color hexadecimal válido */
-    height: 60px;
+  background: #ff8d01;
+  /* Cambiado a un color hexadecimal válido */
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  /* Espaciado horizontal */
+  flex-wrap: wrap; // Permite que los elementos se acomoden en pantallas pequeñas si es necesario
+
+
+  .nav_logo {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+  }
+
+  .nav_items {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px; /* Espaciado horizontal */
-  
-    .nav_logo {
-      font-weight: bold;
-      font-size: 20px;
-      color: white;
-    }
-  
-    .nav_items a {
-      margin: 0 15px;
+    gap: 15px; // Mejor que margin para control de separación
+    flex-wrap: wrap; // Asegura adaptabilidad en pantallas más pequeñas
+
+    a {
       color: white;
       position: relative;
       text-decoration: none;
     }
-  
-    .search-bar {
-      width: 300px; /* Tamaño fijo */
-      padding: 10px;
-      font-size: 1rem;
-      border: 2px solid #5e239d;
-      border-radius: 8px;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-  
-      &:focus {
-        border-color: #28a745;
-        box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
-      }
+  }
+
+
+  .search-bar {
+    width: 100%; // Tamaño flexible para pantallas pequeñas
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #5e239d;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+
+    &:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
     }
   }
-  
+}
+
+/* Media Queries para tablets y escritorio */
+
+/* Tablets (mínimo 768px) */
+@media (min-width: 768px) {
+  .navBar {
+      padding: 0 40px;
+      
+      .search-bar {
+          width: 50%; // Ajuste del tamaño de la barra de búsqueda
+      }
+
+      .nav_items a {
+          margin: 0 10px;
+          font-size: 1.1rem;
+      }
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .navBar {
+      padding: 0 60px;
+      
+      .nav_logo {
+          font-size: 24px;
+      }
+
+      .nav_items a {
+          font-size: 1.2rem;
+      }
+
+      .search-bar {
+          width: 300px;
+      }
+  }
+}
