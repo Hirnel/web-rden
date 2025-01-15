@@ -1,0 +1,26 @@
+main {
+    padding: 20px;
+    max-width: 1200px; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    // Asegurar que el contenido no quede debajo del footer fijo
+    padding-bottom: 60px; 
+
+    /* Media Queries para pantallas más grandes */
+    
+    /* Tablets (mínimo 768px) */
+    @media (min-width: 768px) {
+        flex-direction: row; // Cambio de columna a fila en pantallas más grandes
+        flex-wrap: wrap; // Permitir ajuste del contenido
+        justify-content: space-around;
+    }
+
+    /* Escritorio (mínimo 1024px) */
+    @media (min-width: 1024px) {
+        padding: 40px;
+        gap: 30px;
+    }
+}

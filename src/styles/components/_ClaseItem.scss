@@ -27,3 +27,79 @@
     text-transform: capitalize; /* Asegura que el texto tenga capitalización */
   }
 }
+
+/* Media Queries para _ClaseItem.scss */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  .clase-item {
+      flex-direction: column;
+      padding: 10px;
+      gap: 10px;  /* Espaciado entre la imagen y el texto */
+
+      .clase-img {
+          width: 100px; /* Tamaño más pequeño para pantallas reducidas */
+          border-width: 2px; 
+      }
+
+      .clase-name {
+          font-size: 1rem; /* Tamaño de texto reducido */
+      }
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  .clase-item {
+      flex-direction: column;
+      padding: 15px;
+      gap: 15px;
+
+      .clase-img {
+          width: 110px;
+          border-width: 2.5px;
+      }
+
+      .clase-name {
+          font-size: 1.1rem;
+      }
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .clase-item {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      gap: 20px;
+
+      .clase-img {
+          width: 120px; 
+          border-width: 3px;
+      }
+
+      .clase-name {
+          font-size: 1.3rem;
+      }
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .clase-item {
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 20px;
+      gap: 25px;
+
+      .clase-img {
+          width: 150px; 
+          border-width: 3px;
+      }
+
+      .clase-name {
+          font-size: 1.5rem;
+      }
+  }
+}
