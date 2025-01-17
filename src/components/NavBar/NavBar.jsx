@@ -53,6 +53,7 @@ const NavBar = () => {
       <div className="nav_items">
         <a href="/">Inicio</a>
         <a href="/clases">Clases</a>
+        <a href="/SubClasesInfo">SubClases</a>
         <a href="/conquest">Conquest Of The Pine</a>
       </div>
       <SearchBar onSearch={handleSearch} />

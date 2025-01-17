@@ -7,6 +7,7 @@ import ClasesList from "./components/Main/ClasesList";
 import ClaseDetails from "./components/Main/ClasesList/ClaseItem/ClaseDetails";
 import TalentTree from "./components/Main/ClasesList/ClaseItem/ClaseDetails/TalentTree/TalentTree"
 import { ClasesContext } from "./context/clasesContext";
+import SubClases from "./components/Main/SubClasesInfo/SubClasesInfo";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" element={<ClasesList />} />
             <Route path="/clases" element={<ClasesList />} />
             <Route path="/clases/:id" element={<ClaseDetails />} />
+            <Route path="/SubClasesInfo" element={<SubClases />} />
           </Routes>
         </main>
         <Footer />
