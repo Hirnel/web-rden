@@ -24,8 +24,13 @@ const SubClasesInfo = () => {
           poner otro punto en <strong>Uno con lo Sagrado</strong>. Cada subclase tiene su rama de talentos, lo cual hace que sea extremadamente difícil repetir personajes,
           incluso si llevas jugando mucho tiempo.
         </p>
+      </section>
 
-
+      <section>
+        <h3>¿Dónde encuentro las Subclases?</h3>
+        <p>
+          Dentro de la pestaña <strong>Clases</strong> encontrarás al final de la clase todas sus posibles subclases, con toda la información personalizada.
+        </p>
       </section>
 
       <section>

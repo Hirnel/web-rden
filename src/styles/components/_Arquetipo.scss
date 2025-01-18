@@ -1,0 +1,119 @@
+.arquetipo {
+    padding: 20px;
+    background-color: #1e1e2f; /* Fondo oscuro */
+    color: #f8f1e5; /* Texto claro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+  
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #ff8d01; /* Naranja para el título */
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  
+    section {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: #2a2a3e; /* Fondo de sección */
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  
+      h3 {
+        font-size: 2rem;
+        color: #ff8d01; /* Color naranja */
+        margin-bottom: 10px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+  
+      p {
+        font-size: 1rem;
+        color: #f8f1e5;
+        margin-bottom: 10px;
+        text-align: justify;
+  
+        em {
+          font-style: italic;
+          color: #ff8d01; /* Resaltar frases en cursiva */
+        }
+      }
+  
+      ul {
+        list-style: disc;
+        padding-left: 20px;
+  
+        li {
+          margin-bottom: 8px;
+          color: #f8f1e5;
+  
+          strong {
+            color: #ff8d01; /* Resaltar atributos importantes */
+          }
+        }
+      }
+    }
+  
+    /* Sección para clases y dioses */
+    .clases-dioses {
+      p {
+        strong {
+          color: #ff8d01; /* Resalta clases y dioses */
+        }
+      }
+    }
+  
+    /* Listas y atributos raciales */
+    .atributos {
+      ul {
+        list-style: circle;
+      }
+  
+      li {
+        font-size: 1rem;
+      }
+    }
+  
+    /* Ajustes para dispositivos móviles */
+    @media (max-width: 768px) {
+      padding: 15px;
+  
+      h2 {
+        font-size: 2rem;
+      }
+  
+      section {
+        padding: 10px;
+  
+        h3 {
+          font-size: 1.5rem;
+        }
+  
+        p, li {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      padding: 10px;
+  
+      h2 {
+        font-size: 1.8rem;
+      }
+  
+      section {
+        padding: 8px;
+  
+        h3 {
+          font-size: 1.3rem;
+        }
+  
+        p, li {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  
