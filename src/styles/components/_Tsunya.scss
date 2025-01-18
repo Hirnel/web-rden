@@ -1,0 +1,124 @@
+.tsunya {
+    padding: 20px;
+    background-color: #1e1e2f; /* Fondo oscuro */
+    color: #f8f1e5; /* Texto claro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+  
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #ff8d01; /* Naranja para el título principal */
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  
+    section {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: #2a2a3e; /* Fondo de las secciones */
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  
+      h3 {
+        font-size: 2rem;
+        color: #ff8d01; /* Naranja para títulos de sección */
+        margin-bottom: 10px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+  
+      p {
+        font-size: 1rem;
+        color: #f8f1e5;
+        margin-bottom: 10px;
+        text-align: justify;
+  
+        strong {
+          font-weight: bold;
+          color: #ff8d01; /* Resaltar palabras clave */
+        }
+      }
+  
+      ul {
+        list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 10px;
+  
+        li {
+          margin-bottom: 8px;
+          color: #f8f1e5;
+  
+          strong {
+            color: #ff8d01; /* Resaltar atributos importantes */
+          }
+        }
+      }
+    }
+  
+    /* Media Queries */
+  
+    /* Móviles pequeños (máximo 480px) */
+    @media (max-width: 480px) {
+      padding: 15px;
+  
+      h2 {
+        font-size: 2rem;
+      }
+  
+      section {
+        h3 {
+          font-size: 1.6rem;
+        }
+  
+        p,
+        li {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  
+    /* Tablets (481px a 768px) */
+    @media (min-width: 481px) and (max-width: 768px) {
+      padding: 20px;
+  
+      h2 {
+        font-size: 2.2rem;
+      }
+  
+      section {
+        h3 {
+          font-size: 1.7rem;
+        }
+  
+        p,
+        li {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  
+    /* Escritorio (mínimo 769px) */
+    @media (min-width: 769px) {
+      padding: 25px;
+  
+      h2 {
+        font-size: 2.4rem;
+      }
+  
+      section {
+        h3 {
+          font-size: 1.8rem;
+        }
+  
+        p,
+        li {
+          font-size: 1.1rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,288 @@
+.razas {
+    padding: 20px;
+    background-color: #1e1e2f; /* Fondo oscuro para todo el componente */
+    color: #f8f1e5; /* Color del texto */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff8d01; /* Color naranja para el título */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      text-align: justify;
+      color: #f8f1e5;
+    }
+  
+    /* Lista de razas */
+    .razas-lista {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15%, 1fr)); /* Se ajusta a porcentajes */
+        gap: 2%; /* Espaciado entre las imágenes */
+        margin-top: 20px;
+      
+        .raza-item {
+          text-align: center;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+      
+          &:hover {
+            transform: scale(1.05);
+          }
+      
+          img {
+            width: 100%; /* Ocupa el 100% del contenedor de la tarjeta */
+            aspect-ratio: 3 / 4; /* Proporción de aspecto (3:4) */
+            object-fit: cover; /* Asegura que las imágenes se recorten para ajustarse al contenedor */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+          }
+      
+          span {
+            font-size: 1rem;
+            color: #f8f1e5;
+            font-weight: bold;
+          }
+        }
+      }
+      
+      
+  
+    /* Contenido desplegable de cada raza */
+    .pestaña-contenido {
+      padding: 15px;
+      background-color: #f8f1e5; /* Fondo claro */
+      color: #333; /* Texto oscuro */
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+  }
+  
+  /* Estilos para atributos raciales */
+  .atributos-raciales {
+    padding: 20px;
+    background-color: #1e1e2f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  
+    h3 {
+      font-size: 1.8rem;
+      color: #f8f1e5;
+      margin-bottom: 15px;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f8f1e5;
+      margin-bottom: 10px;
+    }
+  
+    .atributo {
+      margin-bottom: 20px;
+  
+      h4 {
+        font-size: 1.4rem;
+        color: #ff8d01; /* Color naranja para los subtítulos */
+        margin-bottom: 10px;
+      }
+  
+      p {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  
+  /* Estilos para la sección "Común a todas las razas" */
+  .comun-razas {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2a2a3f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+    h2 {
+      font-size: 1.8rem;
+      color: #ff8d01;
+      text-align: center;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f8f1e5;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+  
+    table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+  
+      th,
+      td {
+        border: 1px solid #f8f1e5;
+        padding: 5px;
+        text-align: center;
+        color: #f8f1e5;
+        font-size: 0.9rem;
+      }
+  
+      th {
+        background-color: #1e1e2f;
+        font-weight: bold;
+      }
+  
+      td {
+        background-color: #333;
+      }
+    }
+  }
+  
+  /* Media Queries */
+  
+  /* Móviles pequeños (máximo 480px) */
+  @media (max-width: 480px) {
+    .razas {
+      padding: 15px;
+  
+      h2 {
+        font-size: 1.6rem;
+      }
+  
+      p {
+        font-size: 0.9rem;
+      }
+  
+      .razas-lista {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+  
+      .raza-button {
+        img {
+          width: 100px;
+          height: auto;
+        }
+  
+        span {
+          font-size: 0.9rem;
+        }
+      }
+  
+      .comun-razas {
+        padding: 15px;
+  
+        h2 {
+          font-size: 1.5rem;
+        }
+  
+        table th,
+        table td {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  
+  /* Tablets (481px a 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .razas {
+      padding: 20px;
+  
+      h2 {
+        font-size: 1.8rem;
+      }
+  
+      p {
+        font-size: 1rem;
+      }
+  
+      .razas-lista {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+  
+      .raza-button {
+        img {
+          width: 120px;
+          height: auto;
+        }
+  
+        span {
+          font-size: 1rem;
+        }
+      }
+  
+      .comun-razas {
+        padding: 20px;
+  
+        h2 {
+          font-size: 1.7rem;
+        }
+  
+        table th,
+        table td {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
+  /* Escritorio (mínimo 769px) */
+  @media (min-width: 769px) {
+    .razas {
+      padding: 25px;
+  
+      h2 {
+        font-size: 2rem;
+      }
+  
+      p {
+        font-size: 1rem;
+      }
+  
+      .razas-lista {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+  
+      .raza-button {
+        img {
+          width: 150px;
+          height: auto;
+        }
+  
+        span {
+          font-size: 1.1rem;
+        }
+      }
+  
+      .comun-razas {
+        padding: 25px;
+  
+        h2 {
+          font-size: 1.8rem;
+        }
+  
+        table th,
+        table td {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
