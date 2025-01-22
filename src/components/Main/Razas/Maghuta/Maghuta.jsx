@@ -7,7 +7,7 @@ const Maghuta = () => {
       <h2>Mag'huta</h2>
       <section className="historia">
         <p>
-          Sempiterna, la guardia ígnea había jurado proteger al senescal, ahora, el alma de este aguarda hasta completar su último deseo...
+          Sempiterna, la guardia ígnea había jurado proteger al Senescal, ahora, el alma de este aguarda hasta completar su último deseo...
         </p>
         <p>
           -¿Cuántos años han pasado?- Dijo Tercer Amanecer mientras miraba por la ventana a la antigua gloriosa ciudad fortaleza, ahora en ruinas e infestada de demonios, en otra planta, se escuchaba a dos de sus compañeros limpiar con exhaustividad la planta intermedia para que los demonios no pudieran acceder al despacho.

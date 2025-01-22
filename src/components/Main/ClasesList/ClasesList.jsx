@@ -16,15 +16,15 @@ const ClasesList = () => {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
         const data = await response.json();
-        setClases(data); // Actualiza el estado global
-        setLoading(false); // Finaliza la carga
+        setClases(data); // aqui ctualizo el estado global
+        setLoading(false); // aqui se finaliza la carga
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
 
-    fetchClasesBasicas(); // Cargar clases iniciales
+    fetchClasesBasicas(); // Cargo clases iniciales
   }, [setClases]);
 
   if (loading) {

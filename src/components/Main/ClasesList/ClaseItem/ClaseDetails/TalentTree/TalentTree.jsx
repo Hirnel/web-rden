@@ -68,7 +68,7 @@ const TalentTree = ({ habilidades, selectedHabilidades, setSelectedHabilidades }
                   .filter((h) => h.nivel === nivel)
                   .map((habilidad, index) => (
                     <div key={index} className="habilidad-container">
-                      {/* Nodo principal de la habilidad */}
+                      {/* nodo principal de la habilidad */}
                       <ArcherElement
                         id={habilidad.nombre}
                         relations={habilidad.Desbloquea.map((target) => ({
@@ -93,7 +93,7 @@ const TalentTree = ({ habilidades, selectedHabilidades, setSelectedHabilidades }
                         </div>
                       </ArcherElement>
   
-                      {/* Renderización de opciones como nodos hijos debajo */}
+                      {/* renderizo las opciones como nodos hijos debajo */}
                       {habilidad.efectos?.opciones && (
                         <div className="opciones-container">
                           {habilidad.efectos.opciones.map((opcion, opcionIndex) => (
@@ -120,10 +120,10 @@ const TalentTree = ({ habilidades, selectedHabilidades, setSelectedHabilidades }
                                 <span>{opcion.nombre}</span>
                                 <ul>
                                   {Object.entries(opcion).map(([key, value], index) => {
-                                    // Evitar mostrar el nombre duplicado
+                                    // evitar mostrar el nombre duplicado
                                     if (key === "nombre") return null;
   
-                                    // Descomposición para objetos o arrays
+                                    // descomposición para objetos o arrays
                                     if (typeof value === "object" && !Array.isArray(value)) {
                                       return (
                                         <li key={index}>
