@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import TalentTree from "./TalentTree"; // Importamos TalentTree
+import TalentTree from "./TalentTree"; //  no olvides esto porque no cargan los TalentTree
 import "../../../../../styles/components/_ClaseDetails.scss";
 
 const ClaseDetails = () => {
   const { id } = useParams();
-  const [data, setData] = useState({}); // Almacena los datos de clase o subclase
-  const [showTalentTree, setShowTalentTree] = useState(false); // Estado para mostrar/ocultar el diagrama de talentos
-  const [selectedHabilidades, setSelectedHabilidades] = useState([]); // Estado para las habilidades seleccionadas
+  const [data, setData] = useState({}); // almaceno los datos de clase o subclase y luego les hago llamadas 
+  const [showTalentTree, setShowTalentTree] = useState(false); // estado para mostrar/ocultar el diagrama de talentos
+  const [selectedHabilidades, setSelectedHabilidades] = useState([]); // estado para las habilidades seleccionadas
   const [error, setError] = useState(null);
 
-  // Efecto para desplazar la página al inicio cuando el componente cambia de ID
+
   useEffect(() => {
-    window.scrollTo(0, 0); // Mueve la barra de desplazamiento al inicio
+    window.scrollTo(0, 0); // Mueve la barra de desplazamiento al inicio cuando pasa de ClaseItem a ClaseDetails, sin esto se queda la web muy abajo y tienes que subir a mano.
   }, [id]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const ClaseDetails = () => {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
         const fetchedData = await response.json();
-        console.log("Datos cargados:", fetchedData); // Verificar datos en consola
+        console.log("Datos cargados:", fetchedData); 
         setData(fetchedData);
       } catch (err) {
         console.error("Error al cargar los detalles:", err.message);
@@ -40,10 +40,10 @@ const ClaseDetails = () => {
 
   const toggleTalentTree = () => {
     if (showTalentTree) {
-      // Limpiar habilidades seleccionadas al ocultar el árbol
+      // cuando oculto el arbol se limpian las que esten seleccionadas.
       setSelectedHabilidades([]);
     }
-    setShowTalentTree((prev) => !prev); // Alternar estado del árbol
+    setShowTalentTree((prev) => !prev); // alternar estado del arbol
   };
 
   if (error) {
@@ -59,14 +59,14 @@ const ClaseDetails = () => {
         {habilidades.map((habilidad, index) => (
             <li key={index}>
                 <div className="habilidad-container">
-                    {/* Descripción de la habilidad */}
+                    {/* descripciton de la habilidad */}
                     <div className="habilidad-descripcion">
                         <h4>
                             {habilidad.nombre} <span>(Nivel: {habilidad.nivel})</span>
                         </h4>
                         <p>{habilidad.descripcion}</p>
 
-                        {/* Renderización de efectos y opciones anidadas */}
+                        {/* renderizo efectos y opciones anidadas */}
                         {habilidad.efectos && Object.keys(habilidad.efectos).length > 0 ? (
                             <ul>
                                 {Object.entries(habilidad.efectos).map(([key, value]) => (
@@ -117,13 +117,13 @@ const ClaseDetails = () => {
                             <p>No se encontraron efectos para esta habilidad.</p>
                         )}
 
-                        {/* Tipo de habilidad */}
+                        {/* tipo de habilidad */}
                         <p>
                             <strong>Tipo:</strong> {habilidad.activa ? "Activa" : "Pasiva"}
                         </p>
                     </div>
 
-                    {/* Imagen de la habilidad */}
+                    {/* img de la habilidad */}
                     {habilidad.imagen && (
                         <div className="habilidad-img-container">
                             <img
@@ -151,7 +151,7 @@ const ClaseDetails = () => {
     </ul>
   );
 
-  // Verificar si el objeto cargado es una subclase
+  // verifica si el objeto cargado es una subclase
   const isSubclase = !!data.idSubclase;
 
   return (
@@ -159,7 +159,7 @@ const ClaseDetails = () => {
       <h2>{data.nombre}</h2>
       <p>{data.descripcion}</p>
 
-      {/* Mostrar imagen principal */}
+      {/* mostrar imagen principal */}
       {data.imagen && (
         <img
           src={`http://localhost:3000${data.imagen}`}
@@ -168,7 +168,7 @@ const ClaseDetails = () => {
         />
       )}
 
-      {/* Botón para mostrar el diagrama de talentos */}
+      {/* boton para mostrar el diagrama de talentos */}
       {isSubclase && (
         <div className="button-container">
           <button
@@ -180,7 +180,7 @@ const ClaseDetails = () => {
         </div>
       )}
 
-      {/* Renderizar el diagrama de talentos */}
+      {/* renderiza el diagrama de talentos leyendo la api  */}
       {isSubclase && showTalentTree && data.habilidades && (
         <div className="talent-tree-container">
           <h3>Árbol de Talentos</h3>
@@ -192,7 +192,7 @@ const ClaseDetails = () => {
         </div>
       )}
 
-      {/* Competencias (Solo para clases básicas) */}
+      {/* competencias (solo para clases basicas porque son las que tienen esa info) */}
       {!isSubclase && data.rasgosDeClase?.competencias && (
         <>
           <h3>Competencias</h3>
@@ -200,7 +200,7 @@ const ClaseDetails = () => {
         </>
       )}
 
-      {/* Habilidades */}
+      {/* habilidades */}
       {data.habilidades && data.habilidades.length > 0 && (
         <>
           <h3>Talentos detallados </h3>
@@ -212,7 +212,7 @@ const ClaseDetails = () => {
 
 
 
-      {/* Progresión (Solo para clases básicas) */}
+      {/* progresión (solo para clases basicas porque son las que tienen esa info) */}
       {
         !isSubclase && data.progresion?.length > 0 && (
           <>
@@ -242,7 +242,7 @@ const ClaseDetails = () => {
         )
       }
 
-      {/* Subclases (Solo para clases básicas) */}
+      {/* Subclases (solo para clases básicas) */}
       {
         !isSubclase && data.subclases && data.subclases.length > 0 && (
           <>

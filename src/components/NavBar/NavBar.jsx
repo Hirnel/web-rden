@@ -10,7 +10,7 @@ const NavBar = () => {
     const term = searchTerm.trim().toLowerCase().replace(/\s+/g, "_");
 
     if (term === "") {
-      // Si no hay término de búsqueda, recargar todas las clases
+      // Si no buscas nada, recarga todas las clases
       try {
         const response = await fetch("http://localhost:3000/api/clases/basicas");
         const data = await response.json();
@@ -35,12 +35,12 @@ const NavBar = () => {
         setClases(filtered);
       } else {
         try {
-          // Si el filtro no encuentra coincidencias, recargar todas las clases básicas
+          // Si el filtro no encuentra nada, recargo todas las clases básicas
           const response = await fetch(
             "http://localhost:3000/api/clases/basicas"
           );
           const data = await response.json();
-          setClases(data); // Vuelve a cargar todas las clases
+          setClases(data); // recargo
         } catch (err) {
           console.error("Error al cargar las clases básicas:", err);
         }

@@ -17,7 +17,7 @@ const ClaseItem = ({ clase }) => {
         )}
       </div>
       <h3>{nombre}</h3>
-      {/* Link a la ruta de detalles de la clase */}
+      {/* link a la ruta de detalles de la clase */}
       <Link to={`/clases/${id}`}>
         <button className="button-SEE-MORE">VER MÁS</button>
       </Link>
