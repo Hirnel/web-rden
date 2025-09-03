@@ -2,29 +2,39 @@ import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../../styles/components/_ClasesList.scss";
 import { ClasesContext } from "../../../context/clasesContext";
+import { getAllClases } from "../../../services/clasesService";
+
+
 
 const ClasesList = () => {
   const { clases, setClases } = useContext(ClasesContext);
-  const [loading, setLoading] = useState(true); // Estado para manejar carga
+  const [loading, setLoading] = useState(false); // Estado para manejar carga
+  const [dataSaved, setDataSaved] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchClasesBasicas = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/clases/basicas");
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        const data = await response.json();
-        setClases(data); // aqui ctualizo el estado global
-        setLoading(false); // aqui se finaliza la carga
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
 
-    fetchClasesBasicas(); // Cargo clases iniciales
+  const fetchClasesBasicas = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllClases()
+        // const response = await fetch("http://localhost:3000/api/clases/basicas");
+        // if (!response.ok) {
+        //   throw new Error(`Error ${response.status}: ${response.statusText}`);
+        // }
+        // const data = await response.json();
+      setClases(data); // aqui ctualizo el estado global
+      setDataSaved(true);
+      setLoading(false); // aqui se finaliza la carga
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!loading && !dataSaved) {
+      fetchClasesBasicas(); // Cargo clases iniciales
+    }
   }, [setClases]);
 
   if (loading) {

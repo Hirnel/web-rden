@@ -4,14 +4,9 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:3000/api/clases';
 
 // Obtener todas las clases
-export const getAllClases = async () => {
-  try {
-    const response = await axios.get(API_BASE_URL);
-    return response.data;
-  } catch (error) {
-    console.error('Error obteniendo las clases:', error);
-    throw error;
-  }
+export const getAllClases = async ({ signal } = {}) => {
+  const response = await axios.get(`${API_BASE_URL}/basicas`, { signal });
+  return response.data;
 };
 
 // Obtener una clase por su nombre
