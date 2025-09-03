@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import TalentTree from "./TalentTree"; //  no olvides esto porque no cargan los TalentTree
 import "../../../../../styles/components/_ClaseDetails.scss";
+import { getClaseByName, getSubclase } from "../../../../../services/clasesService";
 
 const ClaseDetails = () => {
-  const { id } = useParams();
+  const { id, idSubclase } = useParams();
   const [data, setData] = useState({}); // almaceno los datos de clase o subclase y luego les hago llamadas 
   const [showTalentTree, setShowTalentTree] = useState(false); // estado para mostrar/ocultar el diagrama de talentos
   const [selectedHabilidades, setSelectedHabilidades] = useState([]); // estado para las habilidades seleccionadas
@@ -20,23 +21,49 @@ const ClaseDetails = () => {
       setError("ID no válido para la clase o subclase.");
       return;
     }
-    const fetchDetails = async () => {
+    const fetchDetails = async() => {
       try {
-        const response = await fetch(`http://localhost:3000/api/clases/${id}`);
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        const fetchedData = await response.json();
-        console.log("Datos cargados:", fetchedData); 
+        const fetchedData = await getClaseByName(id);
         setData(fetchedData);
-      } catch (err) {
-        console.error("Error al cargar los detalles:", err.message);
-        setError(`No se pudo cargar la clase o subclase: ${err.message}`);
+      } catch(err){
+           console.error("Error al cargar los detalles:", err.message);
+           setError(`No se pudo cargar la clase o subclase: ${err.message}`);
       }
-    };
+    }
 
-    fetchDetails();
-  }, [id]);
+    const fetchSubclassDetails = async() => {
+      try {
+        const fetchedData = await getSubclase(id, idSubclase);
+        setData(fetchedData);
+      } catch(err){
+           console.error("Error al cargar los detalles:", err.message);
+           setError(`No se pudo cargar la clase o subclase: ${err.message}`);
+      }
+    }
+
+    if(!idSubclase) {
+        fetchDetails();
+    } else {
+      fetchSubclassDetails();
+    }
+
+    // const fetchDetails = async () => {
+    //   try {
+    //     const response = await fetch(`http://localhost:3000/api/clases/${id}`);
+    //     if (!response.ok) {
+    //       throw new Error(`Error ${response.status}: ${response.statusText}`);
+    //     }
+    //     const fetchedData = await response.json();
+    //     console.log("Datos cargados:", fetchedData); 
+    //     setData(fetchedData);
+    //   } catch (err) {
+    //     console.error("Error al cargar los detalles:", err.message);
+    //     setError(`No se pudo cargar la clase o subclase: ${err.message}`);
+    //   }
+    // };
+
+    // fetchDetails();
+  }, [id, idSubclase]);
 
   const toggleTalentTree = () => {
     if (showTalentTree) {
@@ -259,7 +286,7 @@ const ClaseDetails = () => {
                       className="subclase-img"
                     />
                   )}
-                  <Link to={`/clases/${subclase.idSubclase || `subclase-${index}`}`} className="button-link">
+                  <Link to={`/clases/${data.id}/subclases/${subclase.idSubclase || `subclase-${index}`}`} className="button-link">
                     <button className="button-SEE-MORE">
                       Ver más detalles de {subclase.nombre}
                     </button>

@@ -36,6 +36,7 @@ function App() {
             <Route path="/" element={<ClasesList />} />
             <Route path="/clases" element={<ClasesList />} />
             <Route path="/clases/:id" element={<ClaseDetails />} />
+            <Route path="/clases/:id/subclases/:idSubclase" element={<ClaseDetails />} />
             <Route path="/subClasesInfo" element={<SubClasesInfo />} />
             <Route path="/razas" element={<Razas />} />
             <Route path="/razas/arquetipo" element={<Arquetipo />} />
