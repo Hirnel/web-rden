@@ -7,7 +7,7 @@ import humanoImg from "../../../../public/Humano.jpg";
 import maghutaImg from "../../../../public/Maghuta.jpg";
 import temereImg from "../../../../public/Temere.jpg";
 import tsunyaImg from "../../../../public/tsunya.jpg";
-import yairaImg from "../../../../public/yaira.jpg";
+import yairaImg from "../../../../public/Yaira.jpg";
 
 const Razas = () => {
   const navigate = useNavigate();
