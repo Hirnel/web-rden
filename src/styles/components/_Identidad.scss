@@ -1,0 +1,332 @@
+/* ==========================================================================
+   Identidad – Presentación de Érden
+   Paleta: azul profundo (Omnes), dorado viejo, papiro cálido
+   ========================================================================== */
+
+.identidad {
+  /* Tokens */
+  --azul: #0a1630;
+  --azul-2: #0f214a;
+  --dorado: #c9a646;
+  --dorado-soft: rgba(201, 166, 70, 0.45);
+  --papiro: #f3ebdd;
+  --tinta: #1b1b1b;
+  --negro: #0b0b0b;
+
+  color: var(--tinta);
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(10, 22, 48, 0.08), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(201, 166, 70, 0.08), transparent 60%),
+    var(--papiro);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+
+  /* -------------------- HERO -------------------- */
+  &__hero {
+    position: relative;
+    min-height: clamp(280px, 40vh, 520px);
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+  }
+
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1000px 600px at 70% -10%, rgba(10, 22, 48, 0.35), transparent 60%),
+      radial-gradient(800px 500px at 0% 100%, rgba(201, 166, 70, 0.18), transparent 60%),
+      linear-gradient(180deg, #111827 0%, #0a1630 55%, #0a1630 100%);
+    z-index: 0;
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    width: 100%;
+    padding: clamp(16px, 3vw, 32px);
+    text-align: center;
+    color: #fff;
+  }
+
+  &__ribbon {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(201, 166, 70, 0.2);
+    border: 1px solid var(--dorado);
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-family: "Baskerville Old", serif;
+    font-size: clamp(1.8rem, 4.6vw, 3.2rem);
+    margin: 0 0 10px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  &__subtitle {
+    margin: 0 auto;
+    max-width: 780px;
+    font-size: clamp(0.98rem, 2.2vw, 1.15rem);
+    opacity: 0.95;
+  }
+
+  &__cta {
+    margin-top: 18px;
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* -------------------- Card como botón (stretched link) -------------------- */
+  .identidad__card {
+    position: relative; /* necesario para posicionar el stretched link */
+  }
+
+  .identidad__card--action {
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 28px rgba(0,0,0,.14);
+    }
+
+    /* realza el ribete dorado en hover */
+    &:hover::after {
+      box-shadow: inset 0 0 0 1.5px var(--dorado), 0 0 0 rgba(0,0,0,0);
+    }
+
+    &:hover .identidad__card-title {
+      color: var(--azul);
+      text-shadow: 0 1px 6px rgba(0,0,0,.08);
+    }
+  }
+
+  .stretched-link {
+    position: absolute;
+    inset: 0;               /* cubre toda la tarjeta */
+    display: block;
+    z-index: 10;            /* por encima de decorativos */
+    border-radius: inherit;
+    text-indent: -9999px;   /* oculta texto si lo hubiera */
+    overflow: hidden;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow:
+        0 0 0 3px #fff,
+        0 0 0 6px var(--dorado);
+    }
+  }
+
+  /* Aseguramos que el medallón quede bajo el link clicable */
+  .identidad__card-medallon { z-index: 1; }
+
+  /* -------------------- Botones reutilizables -------------------- */
+  .btn {
+    display: inline-block;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    will-change: transform;
+
+    &--primary {
+      background: #ff6600;
+      color: #fff;
+      border: 2px solid var(--negro);
+      box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25), 0 6px 14px rgba(0, 0, 0, 0.35);
+
+      &:hover { background: #5e239d; transform: translateY(-1px); }
+      &:active { transform: translateY(0); }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid var(--dorado);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+
+      &:hover { background: rgba(201, 166, 70, 0.15); transform: translateY(-1px); }
+      &:active { transform: translateY(0); }
+    }
+  }
+
+  /* -------------------- INTRO -------------------- */
+  &__intro {
+    padding: clamp(18px, 3vw, 32px);
+    background:
+      linear-gradient(180deg, rgba(10, 22, 48, 0.06), rgba(10, 22, 48, 0.0));
+    color: var(--tinta);
+    text-align: center;
+
+    .lead {
+      margin: 0 auto;
+      max-width: 900px;
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      line-height: 1.7;
+    }
+  }
+
+  /* -------------------- GRID DE VALORES / CARDS -------------------- */
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(14px, 2vw, 24px);
+    padding: clamp(16px, 3vw, 32px);
+    margin: 0;
+    list-style: none;
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &::after {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1.5px var(--dorado-soft);
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__card-medallon {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: radial-gradient(ellipse at 30% 30%, #fff 0%, #eee 60%, #d7d7d7 100%);
+    border: 2px solid var(--dorado);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  &__card-title {
+  font-family: "Baskerville Old", serif;
+  font-size: 1.25rem;
+  margin: 2px 0 6px 0;
+  color: var(--azul);
+  text-align: left;
+  padding-inline-start: var(--title-offset, 2%); //  controla la distancia desde la izquierda, como no tengo arte lo dejo a 2% para que luego se pueda tocar. 
+  border: 1px solid var(--dorado);
+  border-radius: 999px;
+  background: rgba(10,22,48,.08);
+}
+
+  &__card-text {
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+    padding-right: 72px; /* reserva para el medallón */
+    text-align: center;
+  }
+
+  /* -------------------- CITA / LORE -------------------- */
+  &__quote {
+    margin: 0;
+    padding: clamp(18px, 3vw, 28px);
+    text-align: center;
+    color: var(--azul);
+
+    blockquote {
+      margin: 0 auto 8px;
+      max-width: 820px;
+      font-family: "Baskerville Old", serif;
+      font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+      line-height: 1.6;
+      position: relative;
+    }
+
+    figcaption {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+  }
+
+  /* -------------------- CRONO MINI -------------------- */
+  &__timeline {
+    position: relative;
+    padding: clamp(16px, 3vw, 32px);
+  }
+
+  &__timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(clamp(16px, 3vw, 32px));
+    bottom: calc(clamp(16px, 3vw, 32px));
+    width: 2px;
+    background: linear-gradient(var(--dorado), rgba(201,166,70,0.2));
+    border-radius: 2px;
+    opacity: .7;
+    z-index: 0;                
+    pointer-events: none;      
+  }
+
+  &__timeline-items {
+    position: relative;
+    z-index: 1;                
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__timeline-item {
+    position: relative;        
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.07);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 10px 18px rgba(0,0,0,.08);
+    text-align: center;
+  }
+
+ &__pill {
+  display: block;                 /* de inline-block a block */
+  width: fit-content;             /* el ancho se ajusta al contenido */
+  margin: 8px auto 10px;          /* auto en laterales = centrado */
+  font-size: 1.35rem;
+  padding: 4px 10px;
+  background: rgba(10,22,48,.08);
+  color: var(--azul);
+  border: 1px solid var(--dorado);
+  border-radius: 999px;
+}
+
+
+  /* -------------------- RESPONSIVE -------------------- */
+  @media (min-width: 900px) {
+    &__grid { grid-template-columns: repeat(3, 1fr); }
+
+    &__timeline-items {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

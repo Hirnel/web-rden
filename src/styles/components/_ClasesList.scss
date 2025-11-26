@@ -1,0 +1,337 @@
+/* ==========================================================================
+   ClasesList – Estilo general + variante compacta (B + E)
+   - Imagen a sangrado (B)
+   - Medallón abajo-derecha + estandarte (E)
+   - Sin trucos que oculten tarjetas (NO max-height / overflow hidden)
+   ========================================================================== */
+
+/* -------------------- CONTENEDOR -------------------- */
+.clases-list {
+  /* Tokens */
+  --erden-azul: #0a1630;
+  --erden-dorado: #c9a646;
+  --erden-dorado-soft: rgba(201, 166, 70, 0.45);
+  --erden-negro: #0b0b0b;
+
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    color: #333;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Grid base */
+  .clases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* -------------------- CARD (B + E) -------------------- */
+  .clase-card {
+    position: relative;
+    padding: 0;                 /* imagen a sangrado */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+    text-align: initial;        /* no centramos todo por defecto */
+    background: #fff;
+    isolation: isolate;
+
+    /* Filete dorado sutil */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 20px;
+      box-shadow: inset 0 0 0 1.5px var(--erden-dorado-soft);
+    }
+
+    /* Imagen full-bleed con ratio */
+    .clase-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 5;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0;
+      transition: transform 0.45s ease;
+    }
+
+    /* ==================== MEDALLÓN (abajo-derecha) ==================== */
+    .clase-medallon {
+      position: absolute;
+      right: 8px;          /* anclado a esquina inferior derecha */
+      bottom: 8px;
+      transform: none;      /* sin translate */
+      width: 55px;
+      height: 55px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at 30% 30%, #fff 0%, #eee 60%, #d7d7d7 100%);
+      border: 2px solid var(--erden-dorado);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25), inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+      display: grid;
+      place-items: center;
+      z-index: 4;           /* por encima del overlay */
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+      .clase-medallon-icon {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+      }
+    }
+
+    /* Estandarte inferior con nombre (reservamos hueco para medallón) */
+    .clase-banner {
+      position: absolute;
+      bottom: 8px;
+      left: 36%;
+      transform: translateX(-50%);
+      background: var(--erden-azul);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 999px;
+      border: 1.5px solid var(--erden-dorado);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+
+      span {
+        font-family: "Baskerville Old", serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+        padding-right: 74px; /* reserva para que no solape el medallón */
+      }
+    }
+
+    /* Overlay accionable (hover/focus) */
+    .clase-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: end center;
+      text-decoration: none;
+      z-index: 3; /* debajo del medallón (4) */
+      background: linear-gradient(
+        to top,
+        rgba(10, 22, 48, 0.88) 0%,
+        rgba(10, 22, 48, 0.55) 40%,
+        rgba(10, 22, 48, 0) 70%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      outline: none;
+
+      .overlay-content {
+        width: 100%;
+        padding: 18px 18px 22px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .clase-title {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+        font-family: "Baskerville Old", serif;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+
+      .clase-tags {
+        display: inline-flex;
+        gap: 8px;
+        margin: 0 0 12px;
+        padding: 0;
+        list-style: none;
+
+        .clase-tag {
+          font-size: 0.82rem;
+          padding: 4px 8px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(2px);
+        }
+      }
+
+      /* Botón visual */
+      // .button-SEE-MORE {
+      //   background-color: #ff6600;
+      //   color: #fff;
+      //   border: 2px solid var(--erden-negro);
+      //   padding: 10px 18px;
+      //   border-radius: 10px;
+      //   font-weight: 700;
+      //   box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2), 0 3px 8px rgba(0, 0, 0, 0.35);
+
+      //   &:hover {
+      //     background-color: #5e239d;
+      //     transform: none;
+      //   }
+      //   &:active {
+      //     transform: translateY(1px);
+      //   }
+      // }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--erden-dorado);
+      }
+    }
+
+    /* Interacciones */
+    &:hover .clase-img,
+    &:focus-within .clase-img {
+      transform: scale(1.04);
+    }
+
+    &:hover .clase-overlay,
+    &:focus-within .clase-overlay {
+      opacity: 1;
+    }
+
+    /* Hover ajustado del medallón (sin translate) */
+    &:hover .clase-medallon,
+    &:focus-within .clase-medallon {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Por si quedó el h3/botón antiguos en el DOM */
+    > h3 {
+      display: none;
+    }
+    > a > .button-SEE-MORE {
+      display: none;
+    }
+  }
+
+  /* -------------------- RESPONSIVE BASE -------------------- */
+  @media (max-width: 480px) {
+    .clase-card {
+      .clase-img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .clase-medallon {
+        right: 8px;
+        bottom: 8px;
+        width: 72px;
+        height: 72px;
+
+        .clase-medallon-icon {
+          width: 44px;
+          height: 44px;
+        }
+      }
+
+      .clase-banner {
+        bottom: 10px;
+
+        span {
+          font-size: 1rem;
+          padding-right: 64px; /* reserva menor en móviles */
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   VARIANTE COMPACTA – tarjetas mini para ver muchas a la vez
+   Activación: <div class="clases-list clases-list--compact">
+   ========================================================================== */
+.clases-list--compact {
+  padding: 12px;
+
+  h2 {
+    margin-bottom: 12px;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  }
+
+  .clases-grid {
+    gap: 10px;
+    /* Más columnas: auto-fill para rellenar filas */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .clase-card {
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+
+    .clase-img {
+      aspect-ratio: 3 / 2; /* más bajita que 4/3 */
+      transition: transform 0.35s ease;
+    }
+
+    /* Medallón compacto (abajo-derecha) */
+    .clase-medallon {
+      right: 8px;
+      bottom: 8px;
+      width: 56px;
+      height: 56px;
+
+      .clase-medallon-icon {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    .clase-banner {
+      bottom: 8px;
+      padding: 6px 10px;
+      border-width: 1px;
+
+      span {
+        font-size: 0.95rem;
+        padding-right: 58px; /* reserva ajustada para el medallón más pequeño */
+      }
+    }
+
+    .clase-overlay {
+      .overlay-content {
+        padding: 12px 10px 14px;
+      }
+      .clase-title {
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+      }
+      .clase-tags {
+        display: none; /* ahorra espacio */
+      }
+      .button-SEE-MORE {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        border-width: 1.5px;
+      }
+    }
+  }
+
+  /* Ajustes por tamaños de pantalla (sin ocultar tarjetas) */
+  @media (max-width: 767px) {
+    .clases-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    .clase-card .clase-img {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .clase-card .clase-img {
+      aspect-ratio: 4 / 3; /* un pelín más alta si sobra espacio horizontal */
+    }
+  }
+}

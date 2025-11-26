@@ -1,0 +1,78 @@
+button {
+  background-color: #01796F; /* Verde oscuro */
+  color: #F8F1E5; /* Crema claro */
+  border: none;
+  border-radius: 5px;
+  padding: 12px 18px; /* Ajustamos el padding */
+  font-size: 1.1rem; /* Texto ligeramente más grande */
+  font-weight: bold; /* Resalta el texto */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+
+  &:hover {
+    background-color: #015F50; /* Verde más oscuro */
+    transform: scale(1.05); /* Pequeño zoom */
+  }
+
+  &:active {
+    transform: scale(0.95); /* Efecto de clic */
+  }
+
+  &:disabled {
+    background-color: #9E9E9E; /* Gris para botones deshabilitados */
+    color: #FFFFFF; /* Texto blanco */
+    cursor: not-allowed; /* Cursor de no permitido */
+    opacity: 0.7; /* Transparencia para indicar desactivación */
+  }
+}
+
+/* Media Queries para _ClassButtons.scss */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  button {
+      padding: 10px 14px; /* Reducción del padding */
+      font-size: 1rem; /* Texto más pequeño */
+      border-radius: 4px; /* Ligeramente menor redondeo */
+
+      &:hover {
+          transform: scale(1.03); /* Menor efecto de zoom */
+      }
+
+      &:active {
+          transform: scale(0.97); /* Menor efecto al hacer clic */
+      }
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  button {
+      padding: 11px 16px; /* Ligero ajuste del padding */
+      font-size: 1.05rem;
+
+      &:hover {
+          transform: scale(1.04);
+      }
+
+      &:active {
+          transform: scale(0.98);
+      }
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  button {
+      padding: 12px 18px;
+      font-size: 1.1rem;
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  button {
+      padding: 14px 20px;
+      font-size: 1.2rem;
+  }
+}

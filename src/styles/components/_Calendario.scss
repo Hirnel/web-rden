@@ -1,0 +1,483 @@
+/* ==========================================================================
+   Calendario de Érden — Versión ampliada y con estados más marcados
+   - Tamaños +10–20% (tipos, celdas, encabezados)
+   - Festivos y Solsticio/Equinoccio con color y borde contundentes
+   - Mantiene grid de 11 columnas (scroll horizontal en móvil)
+   ========================================================================== */
+
+.calendario {
+  /* -------- Tokens -------- */
+  --azul: #0a1630;
+  --azul-2: #0f214a;
+  --dorado: #c9a646;
+  --dorado-soft: rgba(201,166,70,.45);
+  --papiro: #f3ebdd;
+  --tinta: #1b1b1b;
+  --negro: #0b0b0b;
+
+  /* nuevos acentos */
+  --festivo-bg: #efe4ff;             /* base festivo */
+  --festivo-border: #6b2bb8;         /* violeta intenso */
+  --festivo-glow: rgba(107,43,184,.35);
+
+  --sosticio-bg: #e4f1ff;            /* base solsticio/equinoccio */
+  --sosticio-border: #0f6bb8;        /* azul vivo */
+  --sosticio-glow: rgba(15,107,184,.32);
+
+  --today-ring: rgba(201,166,70,.35);
+  --selected-ring: rgba(255,102,0,.45);
+
+  color: var(--tinta);
+  background:
+    radial-gradient(1400px 900px at 80% -10%, rgba(10,22,48,.10), transparent 60%),
+    radial-gradient(1000px 700px at 10% 110%, rgba(201,166,70,.10), transparent 60%),
+    var(--papiro);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  overflow: hidden;
+  padding: clamp(18px, 3.5vw, 36px);
+
+  /* ---------------- Header ---------------- */
+  &__header {
+    text-align: center;
+    margin-bottom: clamp(16px, 3vw, 28px);
+  }
+
+  &__title {
+    font-family: "Baskerville Old", serif;
+    font-size: clamp(1.8rem, 4.6vw, 2.8rem);
+    margin: 0;
+    color: var(--azul);
+    text-shadow: 0 3px 14px rgba(0,0,0,.18);
+  }
+
+  &__subtitle {
+    margin: 8px auto 0;
+    max-width: 920px;
+    opacity: .92;
+    font-size: clamp(1rem, 2.3vw, 1.15rem);
+    line-height: 1.5;
+  }
+
+  /* --------------- Chips de estación --------------- */
+  &__season {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 12px 0 18px;
+
+    .chip {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid var(--dorado);
+      background: rgba(10,22,48,.08);
+      color: var(--azul);
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+
+      span { opacity: .8; font-weight: 700; }
+
+      &:hover { background: rgba(201,166,70,.22); transform: translateY(-1px); }
+      &:active { transform: translateY(0); }
+
+      &.chip--active {
+        background: rgba(201,166,70,.28);
+        box-shadow: 0 8px 16px rgba(0,0,0,.14);
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 3px #fff,
+          0 0 0 6px var(--dorado);
+      }
+    }
+  }
+
+  /* --------------- Tablero --------------- */
+  &__board {
+    background: #fff;
+    border: 1.5px solid rgba(0,0,0,.10);
+    border-radius: 1%;
+    box-shadow: 0 16px 28px rgba(0,0,0,.10);
+    overflow: hidden;
+    max-width: 100%;          /* ← más ancho */
+    margin: 0 auto;
+  }
+
+  /* Cabecera de los 11 nombres de día */
+  &__head {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    background: linear-gradient(180deg, var(--azul-2), var(--azul));
+    color: #fff;
+  }
+
+  &__dayname {
+    padding: 12px 10px;         /* ← más alto */
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: .35px;
+    font-size: clamp(.95rem, 1.5vw, 1.05rem); /* ← más grande */
+    border-right: 1px solid rgba(255,255,255,.16);
+
+    &:last-child { border-right: none; }
+  }
+
+  /* Semanas */
+  &__weeks {
+    display: grid;
+    grid-auto-rows: 1fr;
+  }
+
+  &__week {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    border-top: 1px solid rgba(0,0,0,.07);
+
+    &:nth-child(even) { background: rgba(10,22,48,.02); }
+  }
+
+  &__cell {
+    position: relative;
+    min-height: 150px;           /* ← celdas más altas */
+    padding: 10px 10px 12px;    /* ← más respiración */
+    border-right: 1px solid rgba(0,0,0,.07);
+    font-size: 1rem;
+
+    &:last-child { border-right: none; }
+
+    &-num {
+      position: absolute;
+      top: 8px; left: 8px;
+      font-size: .9rem;         /* ← un poco mayor */
+      font-weight: 800;
+      color: var(--azul);
+      background: rgba(201,166,70,.18);
+      border: 1.5px solid var(--dorado);
+      border-radius: 999px;
+      padding: 3px 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,.08);
+    }
+
+    &-body {
+      margin-top: 26px;
+      font-size: 1rem;          /* ← texto más legible */
+      line-height: 1.45;
+      color: var(--tinta);
+    }
+
+    /* ---- estados base ---- */
+    &--today {
+      box-shadow:
+        inset 0 0 0 2.5px var(--dorado),
+        0 0 0 4px var(--today-ring);
+      background: linear-gradient(180deg, rgba(201,166,70,.16), transparent 45%);
+    }
+
+    &--selected {
+      box-shadow:
+        inset 0 0 0 2.5px #ff6600,
+        0 0 0 4px var(--selected-ring);
+      background: linear-gradient(180deg, rgba(255,102,0,.16), transparent 45%);
+    }
+
+    /* ---- FESTIVO muy marcado ---- */
+    &--festivo {
+      background:
+        radial-gradient(280px 140px at 85% 85%, var(--festivo-glow), transparent 60%),
+        linear-gradient(180deg, var(--festivo-bg), #ffffff 60%);
+      border-right: 1px solid var(--festivo-border);
+      position: relative;
+
+      /* borde interno */
+      &::before {
+        content: "";
+        position: absolute; inset: 4px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 2px var(--festivo-border);
+        pointer-events: none;
+      }
+
+      /* badge */
+      &::after {
+        content: attr(data-mark);
+        position: absolute;
+        bottom: 8px; right: 8px;
+        font-size: .82rem;      /* ← más grande */
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 2px solid var(--festivo-border);
+        background: #fff;
+        color: #3b1570;
+        box-shadow: 0 6px 14px rgba(0,0,0,.12);
+      }
+    }
+
+    /* ---- SOLSTICIO / EQUINOCCIO muy marcado ---- */
+    &--solsticio,
+    &--equinoccio {
+      background:
+        radial-gradient(280px 140px at 85% 85%, var(--sosticio-glow), transparent 60%),
+        linear-gradient(180deg, var(--sosticio-bg), #ffffff 60%);
+      border-right: 1px solid var(--sosticio-border);
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute; inset: 4px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 2px var(--sosticio-border);
+        pointer-events: none;
+      }
+
+      &::after {
+        content: attr(data-mark);
+        position: absolute;
+        bottom: 8px; right: 8px;
+        font-size: .82rem;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 2px solid var(--sosticio-border);
+        background: #fff;
+        color: #0a3e6b;
+        box-shadow: 0 6px 14px rgba(0,0,0,.12);
+      }
+    }
+  }
+
+  /* --------------- Leyenda --------------- */
+  &__legend {
+    max-width: 1400px;
+    margin: 14px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #fff;
+      border: 1.5px solid rgba(0,0,0,.10);
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,.08);
+      font-size: .98rem;
+      font-weight: 600;
+
+      &::before {
+        content: "";
+        width: 16px; height: 16px; border-radius: 4px; display: inline-block;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+      }
+
+      &--today::before     { background: rgba(201,166,70,.45); }
+      &--selected::before  { background: rgba(255,102,0,.45); }
+      &--festivo::before   { background: var(--festivo-glow); }
+      &--solsticio::before,
+      &--equinoccio::before{ background: var(--sosticio-glow); }
+    }
+  }
+
+  /* --------------- Botones locales --------------- */
+  .btn {
+    display: inline-block;
+    border-radius: 12px;
+    padding: 12px 18px;             /* ← un pelín mayor */
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+
+    &--primary {
+      background: #ff6600;
+      color: #fff;
+      border: 2px solid var(--negro);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.35);
+
+      &:hover { background: #5e239d; transform: translateY(-1px); }
+      &:active { transform: translateY(0); }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: var(--azul);
+      border: 2px solid var(--dorado);
+      box-shadow: 0 8px 16px rgba(0,0,0,.15);
+
+      &:hover { background: rgba(201,166,70,.18); transform: translateY(-1px); }
+      &:active { transform: translateY(0); }
+    }
+
+    &--center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 14px auto 0;
+      min-width: 240px;
+    }
+  }
+
+  /* --------------- Responsivo --------------- */
+  @media (max-width: 1200px) {
+    &__board { max-width: 100%; }
+    &__cell  { min-height: 80px; }
+  }
+
+  /* En móviles mantenemos 11 columnas + scroll horizontal suave */
+  @media (max-width: 780px) {
+    &__board { overflow-x: auto; }
+    &__head, &__week { min-width: 980px; } /* ~89px por columna (más cómodo para dedo) */
+    &__dayname { font-size: 1rem; padding: 10px 8px; }
+    &__cell { min-height: 78px; }
+    &__cell-num { font-size: .9rem; }
+  }
+}
+
+/* ==========================================================================
+   Utilidades
+   ========================================================================== */
+.u-center { display: grid; place-items: center; }
+.u-hidden { display: none !important; }
+
+
+
+.calendario {
+  &__cell {
+    /* ...lo que ya tienes... */
+
+    /* ---- SUMMA (Primavera 89–90) ---- */
+    &--summa {
+      background:
+        radial-gradient(280px 140px at 85% 85%, rgba(0,0,0,.18), transparent 60%),
+        linear-gradient(180deg, #f0f0f0, #ffffff 60%);
+      border-right: 1px solid rgba(0,0,0,.25);
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute; inset: 4px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 2px rgba(0,0,0,.35);
+        pointer-events: none;
+      }
+
+      &::after {
+        content: attr(data-mark);
+        position: absolute;
+        bottom: 8px; right: 8px;
+        font-size: .82rem;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 2px solid rgba(0,0,0,.55);
+        background: #fff;
+        color: #222;
+        box-shadow: 0 6px 14px rgba(0,0,0,.12);
+      }
+    }
+  }
+}
+
+
+.calendario {
+  /* ...ya existente... */
+
+  &__legend {
+    /* ...ya existente... */
+
+    .key.key--moons {
+      gap: 12px;
+    }
+
+    .moon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .moon__img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+      /* anillo sutil */
+      box-shadow: 0 0 0 1px rgba(0,0,0,.15);
+      border-radius: 3px;
+    }
+
+    .moon__name {
+      font-weight: 600;
+    }
+
+    .sep {
+      opacity: .6;
+      margin: 0 2px;
+    }
+  }
+  .calendario__legend .key.key--moons::before {
+  display: none; /* quita el cuadrito de la fila de lunas */
+}
+}
+
+/* Si usas el modo compacto, puedes reducir un pelín los iconos */
+.calendario--compact .calendario__legend .moon__img {
+  width: 16px;
+  height: 16px;
+}
+
+
+
+
+
+/* ===== MODO COMPACTO (−12% aprox.) ===== */
+.calendario--compact {
+  padding: clamp(12px, 2.5vw, 22px);
+
+  .calendario__board { max-width: 1000px; border-radius: 14px; }
+  .calendario__title { font-size: clamp(1.6rem, 3.8vw, 2.3rem); }
+  .calendario__subtitle { font-size: clamp(.92rem, 2vw, 1rem); }
+
+  .calendario__season .chip {
+    padding: 8px 12px;
+    gap: 8px;
+    border-width: 1.5px;
+  }
+
+  .calendario__dayname {
+    padding: 8px 6px;
+    font-size: clamp(.85rem, 1.2vw, .95rem);
+  }
+
+  .calendario__cell {
+    min-height: 70px;
+    padding: 8px 8px 10px;
+    font-size: .95rem;
+  }
+  .calendario__cell-num {
+    top: 6px; left: 6px;
+    font-size: .78rem;
+    padding: 2px 6px;
+    border-width: 1px;
+  }
+
+  .calendario__legend .key {
+    padding: 6px 8px;
+    font-size: .9rem;
+  }
+
+  .btn.btn--center { min-width: 200px; padding: 10px 16px; }
+}

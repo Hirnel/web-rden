@@ -1,0 +1,320 @@
+.talent-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 40px;
+  background-color: #1e1e2f;
+  /* Fondo oscuro */
+  border-radius: 15px;
+  /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 2px solid #3e3e5e;
+  /* Marco alrededor del diagrama */
+  width: 80%;
+  /* Ocupa el 80% del ancho disponible */
+  margin: 0 auto;
+  /* Centrado en la pantalla */
+  border: 2px solid #ffffff;
+  /* Marco blanco */
+  max-width: 900px;
+  /* Evita que sea demasiado grande */
+  font-size: 1rem;
+  /* Tamaño de fuente base */
+
+   /* Nuevo ajuste para que el fondo se adapte al contenido */
+   width: min-content; /* Se adapta al contenido interno */
+   max-width: 100%; /* Evitar que crezca más del viewport */
+   overflow-x: auto; /* Habilitar desplazamiento horizontal si es necesario */
+   box-sizing: border-box;
+}
+
+.habilidad-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .talent-node {
+      padding: 10px;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      background: #000;
+      color: white;
+      transition: all 0.3s ease;
+      
+      /* Ajustes para que el texto no se desborde */
+      max-width: 100px;  /* Limitar el ancho del nodo */
+      height: auto;      /* Altura flexible para texto */
+      font-size: 1rem;   /* Tamaño de fuente base */
+      line-height: 1.2;  /* Reducir el espacio entre líneas */
+      word-wrap: break-word;  /* Romper palabras largas */
+      white-space: normal;    /* Permitir saltos de línea */
+      overflow: hidden;       /* Evitar desbordamientos */
+      box-sizing: border-box; /* Padding y border incluidos en el tamaño total */
+
+      &.ellipse {
+          border-radius: 50%;
+          padding: 15px; /* Ajuste específico para nodos circulares */
+          max-width: 90px;
+      }
+
+      &.rectangle {
+          border-radius: 5px;
+          max-width: 120px;
+      }
+
+      /* Ajustes para nodos con opción adicional */
+      .option-node {
+          padding: 0.8rem;
+          border-radius: 8px;
+          border: 2px dashed #ffc107;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-color: #353535;
+          color: white;
+          box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+
+          /* Ajuste de texto dentro de option-node */
+          font-size: 0.9rem;
+          line-height: 1.2;
+          word-wrap: break-word;
+          white-space: normal;
+          overflow: hidden;
+
+          &.active {
+              border-color: #28a745;
+              box-shadow: 0 0 12px rgba(40, 167, 69, 0.9);
+          }
+
+          &:hover {
+              transform: scale(1.1);
+              border-color: #28a745;
+          }
+      }
+
+      &:hover {
+          transform: scale(1.1);
+      }
+  }
+}
+
+.opciones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+
+.talent-tree svg {
+  width: 100%;
+  height: auto;
+}
+
+.talent-row {
+    display: flex;
+    flex-wrap: nowrap; /* Evitar que las filas se rompan */
+    justify-content: center;
+    gap: 20px;
+}
+
+.talent-node {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  /* Usa `rem` en lugar de `px` */
+  font-size: 0.9rem;
+  background: linear-gradient(145deg, #23233e, #1a1a2b);
+  /* Fondo degradado */
+  color: #fff;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.1rem;
+  /* Texto ligeramente más grande */
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  
+
+  &:hover {
+    background: linear-gradient(145deg, #2a2a4a, #1f1f36);
+    /* Cambiar colores al hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateY(-15px);
+    /* Efecto de elevación */
+  }
+
+  &.active {
+    background: linear-gradient(145deg, #28a745, #218838);
+    /* Colores para habilidades activas */
+    border: 2px solid #1c7b2a;
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.6);
+  }
+
+  &.ellipse {
+    border-radius: 50%;
+    /* Hace que la habilidad sea una elipse */
+    padding: 1rem 2rem;
+    /* Ajusta el tamaño del elipse */
+  }
+
+  &.rectangle {
+    border-radius: 8px;
+    /* Mantiene una forma rectangular */
+    padding: 1rem 1.5rem;
+    /* Ajusta el tamaño del rectángulo */
+  }
+}
+
+.tooltip {
+  position: fixed;
+  background-color: #1a1a2e;
+  color: #ffffff;
+  border: 1px solid #3e3e5e;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: opacity 0.3s ease-in-out;
+  min-width: 250px;
+  max-width: 350px;
+
+  &.visible {
+    visibility: visible;
+    /* Hacer visible */
+    opacity: 1;
+    /* Mostrar con opacidad */
+  }
+}
+
+.arrow {
+  stroke-width: 3px;
+  /* Grosor de la flecha */
+  stroke-linecap: round;
+  /* Bordes redondeados */
+  stroke-linejoin: round;
+  marker-end: url(#arrowhead);
+  /* Marcador personalizado para flechas */
+}
+
+.arrow path {
+  stroke: #ffc107;
+  /* Amarillo por defecto */
+  transition: stroke 0.3s ease-in-out;
+  /* Animación suave al cambiar de color */
+}
+
+.arrow.active path {
+  stroke: #28a745;
+  /* Verde si está activo */
+}
+
+.arrow-inactive path {
+  stroke: #ff4500;
+  /* Rojo si está bloqueado */
+}
+
+.talent-tree-title {
+  font-size: 2rem;
+  /* Título más grande */
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+
+/* Media Queries para _TalentTree.scss - Inspirado en el diseño de referencia */
+
+/* Móviles pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  .talent-node {
+      max-width: 80px;
+      font-size: 0.9rem;
+  }
+
+  .option-node {
+      max-width: 90px;
+      font-size: 0.85rem;
+  }
+}
+
+/* Móviles medianos (481px a 767px) */
+@media (max-width: 767px) {
+  .talent-node {
+      max-width: 100px;
+      font-size: 1rem;
+  }
+
+  .option-node {
+      max-width: 100px;
+      font-size: 0.95rem;
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .talent-tree {
+      width: 80%;
+      padding: 30px;
+      gap: 30px;
+  }
+
+  .habilidad-container {
+      gap: 20px;
+  }
+
+  .talent-node {
+      padding: 12px;
+      font-size: 1rem;
+      max-width: 80px;
+      height: 80px;
+  }
+
+  .talent-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+  }
+}
+
+/* Escritorio (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .talent-tree {
+      width: 70%;
+      padding: 40px;
+      gap: 40px;
+  }
+
+  .habilidad-container {
+      gap: 25px;
+  }
+
+  .talent-node {
+      padding: 14px;
+      font-size: 1.2rem;
+      max-width: 90px;
+      height: 90px;
+  }
+
+  .talent-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+  }
+}

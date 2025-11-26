@@ -1,0 +1,150 @@
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #ff8d01;
+  height: 60px;
+  box-sizing: border-box;
+
+  /* Logo del Navbar */
+  .nav_logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      white-space: nowrap; /* Evitar que el logo se rompa */
+  }
+
+  /* Contenedor de los enlaces */
+  .nav_items {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap; /* Permitir que los enlaces se ajusten en pantallas pequeñas */
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        height: 40px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;  /* Centrar el texto dentro del botón */
+        white-space: nowrap; /* Evitar que el texto se rompa */
+        border: 2px solid white; /* Borde añadido */
+        border-radius: 8px;      /* Bordes redondeados */
+        padding: 5px 15px;       /* Espaciado interno */
+        transition: all 0.3s ease; /* Transición suave para efectos */
+        
+        /* Efecto hover para interacción */
+        &:hover {
+            border-color: #5e239d; /* Cambio de color al pasar el ratón */
+            background-color: #5e239d; /* Fondo de color al hacer hover */
+            color: white;
+            transform: scale(1.05); /* Efecto de zoom ligero */
+        }
+    
+        /* Estilo cuando el enlace está activo o seleccionado */
+        &:active {
+            transform: scale(0.95); /* Ligera reducción al hacer clic */
+        }
+    }
+  }
+
+  /* Contenedor de la barra de búsqueda */
+  .search-bar-container {
+      display: flex;
+      align-items: center;
+  }
+
+  /* Barra de búsqueda */
+  .search-bar {
+      width: 300px;
+      padding: 10px;
+      border: 2px solid #5e239d;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+      line-height: 1;
+      box-sizing: border-box;
+
+      &:focus {
+          border-color: #28a745;
+          box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+      }
+  }
+}
+
+/* Móviles Pequeños (máximo 480px) */
+@media (max-width: 480px) {
+  .navBar {
+      flex-direction: column;
+      padding: 10px;
+      gap: 10px;
+      height: auto;
+      text-align: center;
+  }
+
+  .nav_items {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .search-bar {
+      width: 100%;
+  }
+}
+
+/* Tablets (481px a 767px) */
+@media (max-width: 767px) {
+  .navBar {
+      flex-direction: column;
+      padding: 15px;
+      gap: 15px;
+  }
+
+  .nav_items {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+
+  .search-bar {
+      width: 80%;
+  }
+}
+
+/* Tablets y Escritorio Mediano (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navBar {
+      padding: 0 40px;
+  }
+
+  .nav_items a {
+      font-size: 1rem;
+  }
+
+  .search-bar {
+      width: 50%;
+  }
+}
+
+/* Escritorio Grande (mínimo 1024px) */
+@media (min-width: 1024px) {
+  .navBar {
+      padding: 0 60px;
+  }
+
+  .nav_logo {
+      font-size: 24px;
+  }
+
+  .nav_items a {
+      font-size: 1.2rem;
+  }
+
+  .search-bar {
+      width: 300px;
+  }
+}
