@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import SearchBar from "../Search/SearchBar";
 import { ClasesContext } from "../../context/clasesContext";
-import "../../styles/components/_NavBar.scss";
+import "../../styles/components/_Navbar.scss";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL // || 'http://localhost:3000/api/clases';
 const NavBar = () => {
   const { clases, setClases } = useContext(ClasesContext);
 
@@ -12,7 +13,7 @@ const NavBar = () => {
     if (term === "") {
       // Si no buscas nada, recarga todas las clases
       try {
-        const response = await fetch("http://localhost:3000/api/clases/basicas");
+        const response = await fetch(`${API_BASE_URL}/basicas`);
         const data = await response.json();
         setClases(data);
       } catch (err) {
