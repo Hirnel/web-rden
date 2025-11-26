@@ -29,9 +29,9 @@
         font-size: 0.9rem;
         height: 40px;
         display: flex;
-        align-items: center;
+        align-items: center; 
         justify-content: center;  /* Centrar el texto dentro del botón */
-        white-space: nowrap;
+        white-space: nowrap; /* Evitar que el texto se rompa */
         border: 2px solid white; /* Borde añadido */
         border-radius: 8px;      /* Bordes redondeados */
         padding: 5px 15px;       /* Espaciado interno */

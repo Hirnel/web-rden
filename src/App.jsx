@@ -16,6 +16,9 @@ import Maghuta from "./components/Main/Razas/Maghuta";
 import Temere from "./components/Main/Razas/Temere";
 import Tsunya from "./components/Main/Razas/Tsunya";
 import Yaira from "./components/Main/Razas/Yaira";
+import Identidad from "./components/Main/Identidad/Identidad";
+import Calendario from "./components/Main/Identidad/Calendario/Calendario";
+
 
 
 
@@ -48,6 +51,8 @@ function App() {
             <Route path="/razas/yaira" element={<Yaira />} />
             {/* <Route path="/reinos" element={<Reinos />} />
             <Route path="/conquest" element={<Conquest />} /> */}
+            <Route path="/identidad" element={<Identidad />} />
+            <Route path="/calendario" element={<Calendario />} />
           </Routes>
         </main>
         <Footer />

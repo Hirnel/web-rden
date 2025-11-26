@@ -57,6 +57,7 @@ const NavBar = () => {
         <a href="/razas">Razas</a>
         <a href="/reinos">Reinos</a>
         <a href="/conquest">Conquest Of The Pine</a>
+        <a href="/identidad">¿Quiénes somos?</a>
       </div>
       <SearchBar onSearch={handleSearch} />
     </nav>
