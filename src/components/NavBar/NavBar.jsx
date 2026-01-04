@@ -38,7 +38,7 @@ const NavBar = () => {
         try {
           // Si el filtro no encuentra nada, recargo todas las clases básicas
           const response = await fetch(
-            "http://localhost:3000/api/clases/basicas"
+            `${API_BASE_URL}/basicas`
           );
           const data = await response.json();
           setClases(data); // recargo

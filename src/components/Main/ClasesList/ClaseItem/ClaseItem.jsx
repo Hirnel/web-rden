@@ -2,6 +2,8 @@ import React from "react";
 import "../../../../styles/components/_ClaseItem.scss";
 import { Link } from "react-router-dom";
 
+const FRONTEND_BASE_URL = import.meta.env.VITE_FRONTEND_URL
+
 const ClaseItem = ({ clase }) => {
   const { id, nombre, imagen } = clase;
 
@@ -10,7 +12,7 @@ const ClaseItem = ({ clase }) => {
       <div className="clase-img-container">
         {imagen && (
           <img
-            src={`http://localhost:3000${imagen}`}
+            src={`${FRONTEND_BASE_URL}/${imagen}`}
             alt={nombre}
             className="clase-img"
           />

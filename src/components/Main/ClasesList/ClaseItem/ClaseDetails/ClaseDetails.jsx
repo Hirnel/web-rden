@@ -4,6 +4,8 @@ import TalentTree from "./TalentTree"; //  no olvides esto porque no cargan los 
 import "../../../../../styles/components/_ClaseDetails.scss";
 import { getClaseByName, getSubclase } from "../../../../../services/clasesService";
 
+
+const FRONTEND_BASE_URL = import.meta.env.VITE_FRONTEND_URL
 const ClaseDetails = () => {
   const { id, idSubclase } = useParams();
   const [data, setData] = useState({}); // almaceno los datos de clase o subclase y luego les hago llamadas 
@@ -154,7 +156,7 @@ const ClaseDetails = () => {
                     {habilidad.imagen && (
                         <div className="habilidad-img-container">
                             <img
-                                src={`http://localhost:3000${habilidad.imagen}`}
+                                src={`${FRONTEND_BASE_URL}/${habilidad.imagen}`}
                                 alt={habilidad.nombre}
                                 className="habilidad-img"
                             />
@@ -189,7 +191,7 @@ const ClaseDetails = () => {
       {/* mostrar imagen principal */}
       {data.imagen && (
         <img
-          src={`http://localhost:3000${data.imagen}`}
+          src={`${FRONTEND_BASE_URL}/${data.imagen}`}
           alt={data.nombre}
           className="clase-details-img"
         />
@@ -281,7 +283,7 @@ const ClaseDetails = () => {
                   <p>{subclase.descripcion}</p>
                   {subclase.imagen && (
                     <img
-                      src={`http://localhost:3000${subclase.imagen}`}
+                      src={`${FRONTEND_BASE_URL}/${subclase.imagen}`}
                       alt={subclase.nombre}
                       className="subclase-img"
                     />

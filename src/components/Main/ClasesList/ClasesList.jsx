@@ -5,7 +5,7 @@ import { ClasesContext } from "../../../context/clasesContext";
 import { getAllClases } from "../../../services/clasesService";
 
 
-
+const FRONTEND_BASE_URL = import.meta.env.VITE_FRONTEND_URL
 const ClasesList = () => {
   const { clases, setClases } = useContext(ClasesContext);
   const [loading, setLoading] = useState(false); // Estado para manejar carga
@@ -58,7 +58,7 @@ const ClasesList = () => {
     <li key={clase.id} className="clase-card">
       {/* Imagen a sangrado */}
       <img
-        src={`http://localhost:3000${clase.imagen}`}
+        src={`${FRONTEND_BASE_URL}/${clase.imagen}`}
         alt={clase.nombre}
         className="clase-img"
         loading="lazy"
